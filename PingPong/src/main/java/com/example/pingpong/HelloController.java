@@ -12,8 +12,6 @@ import javafx.scene.shape.Rectangle;
 public class HelloController {
     @FXML
     private VBox vBox;
-    @FXML
-    public Rectangle rectRightPaddle;
 
     public void onActionMoveRight(ActionEvent actionEvent) {
         Circle circle = (Circle) vBox.lookup("#circleBall");
@@ -28,6 +26,7 @@ public class HelloController {
 
     private void handleKeyPress(KeyEvent event) {
         Rectangle rectLeftPaddle = (Rectangle) vBox.lookup("#rectLeftPaddle");
+        Rectangle rectRightPaddle = (Rectangle) vBox.lookup(("#rectRightPaddle"));
         double previousPosLeft = rectLeftPaddle.getY();
         double previousPosRight = rectRightPaddle.getY();
         if (event.getCode() == KeyCode.W){

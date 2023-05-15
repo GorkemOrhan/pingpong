@@ -19,10 +19,12 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         VBox loader = fxmlLoader.load();
-        Scene scene = new Scene(loader, 960, 600);
+        double sceneWidth = 960;
+        double sceneHeight = 600;
+        Scene scene = new Scene(loader, sceneWidth, sceneHeight);
         Circle circle = new Circle(0,0,60);
         circle.setId("circleBall");
-        circle.setFill(Ball.color);
+        circle.setFill(Ball.ballColor);
         loader.getChildren().add(circle);
 
         Rectangle rectangleLeft = new Rectangle(20,70);
@@ -30,6 +32,17 @@ public class HelloApplication extends Application {
         loader.getChildren().add(rectangleLeft);
         rectangleLeft.setTranslateY(50);
         rectangleLeft.setTranslateX(100);
+        rectangleLeft.setFill(Paddle.paddleColor);
+        rectangleLeft.setStroke(Paddle.strokeColor);
+
+        Rectangle rectangleRight = new Rectangle(20,100);
+        rectangleRight.setId("rectRightPaddle");
+        loader.getChildren().add(rectangleRight);
+        rectangleRight.setTranslateY(50);
+        rectangleRight.setTranslateX(-100);
+        rectangleRight.setFill(Paddle.paddleColor);
+        rectangleRight.setStroke(Paddle.strokeColor);
+
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
