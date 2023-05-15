@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.pingpong.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+<VBox id="pingPongVBox" fx:id="vBox" alignment="CENTER" prefHeight="474.0" prefWidth="668.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pingpong.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <children>
+      <AnchorPane prefHeight="350.0" prefWidth="602.0">
+         <children>
+            <Button id="btnMoveRight" fx:id="btnMoveRight" layoutX="271.0" layoutY="273.0" mnemonicParsing="false" onAction="#onActionMoveRight" prefHeight="49.0" prefWidth="86.0" text="Button" />
+            <Rectangle fx:id="rectRightPaddle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="73.0" layoutX="623.0" layoutY="139.0" stroke="BLACK" strokeType="INSIDE" width="10.0" />
+         </children>
+      </AnchorPane>
+   </children>
 </VBox>
