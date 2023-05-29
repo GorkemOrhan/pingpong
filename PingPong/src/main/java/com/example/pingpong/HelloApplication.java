@@ -23,6 +23,7 @@ public class HelloApplication extends Application {
         double sceneWidth = 960;
         double sceneHeight = 600;
         Scene scene = new Scene(loader, sceneWidth, sceneHeight);
+        stage.setResizable(false);
         Circle circle = new Circle(0,0,30);
         circle.setId("circleBall");
         circle.setFill(Ball.ballColor);
@@ -30,18 +31,20 @@ public class HelloApplication extends Application {
         circle.setLayoutY(scene.getHeight()/2);
         loader.getChildren().add(circle);
 
-        Rectangle rectangleLeft = new Rectangle(10,73);
+        Rectangle rectangleLeft = new Rectangle(Paddle.WIDTH,Paddle.HEIGHT);
         rectangleLeft.setId("rectLeftPaddle");
         rectangleLeft.setLayoutX(3);
+        rectangleLeft.setLayoutY(scene.getHeight()/2-rectangleLeft.getHeight()/2);
         loader.getChildren().add(rectangleLeft);
         rectangleLeft.setFill(Paddle.BG_COLOR_LEFT);
         rectangleLeft.setStroke(Paddle.STROKE_COLOR);
 
 
-        Rectangle rectangleRight = new Rectangle(10,73);
+        Rectangle rectangleRight = new Rectangle(Paddle.WIDTH,Paddle.HEIGHT);
         rectangleRight.setId("rectRightPaddle");
         loader.getChildren().add(rectangleRight);
         rectangleRight.setLayoutX(scene.getWidth()-rectangleRight.getWidth()-3);
+        rectangleRight.setLayoutY(scene.getHeight()/2-rectangleRight.getHeight()/2);
         rectangleRight.setFill(Paddle.BG_COLOR_RIGHT);
         rectangleRight.setStroke(Paddle.STROKE_COLOR);
 

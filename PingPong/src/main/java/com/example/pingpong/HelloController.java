@@ -28,26 +28,24 @@ public class HelloController {
     }
 
     private void handleKeyPress(KeyEvent event) {
+        Scene scene = apView.getScene();
         Rectangle rectLeftPaddle = (Rectangle) apView.lookup("#rectLeftPaddle");
         Rectangle rectRightPaddle = (Rectangle) apView.lookup(("#rectRightPaddle"));
-        double previousPosLeft = rectLeftPaddle.getY();
-        double previousPosRight = rectRightPaddle.getY();
-        if (event.getCode() == KeyCode.W){
-            rectLeftPaddle.setTranslateY(previousPosLeft -10);
-            rectLeftPaddle.setY(previousPosLeft -10);
+        double previousPosLeft = rectLeftPaddle.getLayoutY();
+        double previousPosRight = rectRightPaddle.getLayoutY();
+        if (event.getCode() == KeyCode.W && previousPosLeft>0){
+            rectLeftPaddle.setTranslateY(Paddle.SPEED);
+            rectLeftPaddle.setLayoutY();
         }
-        else if (event.getCode() == KeyCode.Z){
-            rectLeftPaddle.setTranslateY(previousPosLeft +10);
-            rectLeftPaddle.setY(previousPosLeft +10);
+        else if (event.getCode() == KeyCode.Z && (previousPosLeft < scene.getHeight() - rectLeftPaddle.getHeight())){
+            rectLeftPaddle.setTranslateY(previousPosLeft +Paddle.SPEED);
         }
-        else if (event.getCode() == KeyCode.O){
-            rectRightPaddle.setTranslateY(previousPosRight -10);
-            rectRightPaddle.setY(previousPosRight -10);
-        }
-        else if (event.getCode() == KeyCode.L){
-            rectRightPaddle.setTranslateY(previousPosRight -10);
-            rectRightPaddle.setY(previousPosRight +10);
-        }
+//        else if (event.getCode() == KeyCode.O && previousPosRight>0){
+//            rectRightPaddle.setTranslateY(previousPosRight -Paddle.SPEED);
+//        }
+//        else if (event.getCode() == KeyCode.L && previousPosRight < scene.getHeight() - rectRightPaddle.getHeight()){
+//            rectRightPaddle.setTranslateY(previousPosRight +Paddle.SPEED);
+//        }
     }
 
 
