@@ -11,4 +11,5 @@ public class Paddle {
     public static final double WIDTH = 10;
     public static final double HEIGHT = 73;
     public static final int SPEED = 20;
+    public static final double EDGE_SPACE = 2;
 }

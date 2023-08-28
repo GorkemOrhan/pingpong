@@ -1,14 +1,9 @@
 package com.example.pingpong;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -16,6 +11,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
@@ -26,14 +22,14 @@ public class HelloApplication extends Application {
         stage.setResizable(false);
         Circle circle = new Circle(0,0,30);
         circle.setId("circleBall");
-        circle.setFill(Ball.ballColor);
+        circle.setFill(Ball.COLOR);
         circle.setLayoutX(scene.getWidth()/2);
         circle.setLayoutY(scene.getHeight()/2);
         loader.getChildren().add(circle);
 
         Rectangle rectangleLeft = new Rectangle(Paddle.WIDTH,Paddle.HEIGHT);
         rectangleLeft.setId("rectLeftPaddle");
-        rectangleLeft.setLayoutX(3);
+        rectangleLeft.setLayoutX(Paddle.EDGE_SPACE);
         rectangleLeft.setLayoutY(scene.getHeight()/2-rectangleLeft.getHeight()/2);
         loader.getChildren().add(rectangleLeft);
         rectangleLeft.setFill(Paddle.BG_COLOR_LEFT);
@@ -43,7 +39,7 @@ public class HelloApplication extends Application {
         Rectangle rectangleRight = new Rectangle(Paddle.WIDTH,Paddle.HEIGHT);
         rectangleRight.setId("rectRightPaddle");
         loader.getChildren().add(rectangleRight);
-        rectangleRight.setLayoutX(scene.getWidth()-rectangleRight.getWidth()-3);
+        rectangleRight.setLayoutX(scene.getWidth()-rectangleRight.getWidth()-Paddle.EDGE_SPACE);
         rectangleRight.setLayoutY(scene.getHeight()/2-rectangleRight.getHeight()/2);
         rectangleRight.setFill(Paddle.BG_COLOR_RIGHT);
         rectangleRight.setStroke(Paddle.STROKE_COLOR);
@@ -51,10 +47,6 @@ public class HelloApplication extends Application {
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
-
-        //rectangleLeft.setX(100);
-        //rectangleLeft.setY(200);
-
     }
 
     public static void main(String[] args) {
