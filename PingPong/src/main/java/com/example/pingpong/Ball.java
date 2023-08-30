@@ -13,4 +13,6 @@ public class Ball {
     public static final Color COLOR = Color.RED;
     public static final double posX = 0.0;
     public static final double posY = 0.0;
+    public static final int ANGLE = 60;
+    public static final int SPEED_MULTIPLIER = 10;
 }

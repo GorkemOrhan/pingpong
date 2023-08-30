@@ -53,21 +53,32 @@ public class HelloController {
 
     double circleNextX = 0;
     double circleNextY = 0;
+
+    private Speed getSpeed(){
+        double x = Ball.SPEED_MULTIPLIER;
+        double y = Ball.SPEED_MULTIPLIER*Math.sqrt(3);
+        Speed speed = new Speed(x,y);
+        return speed;
+    }
     private void topLeft(double circlePrevX,double circlePrevY){
-        circleNextX = circlePrevX-Ball.SPEED_X;
-        circleNextY = circlePrevY-Ball.SPEED_Y;
+        Speed speed = getSpeed();
+        circleNextX = circlePrevX-speed.getX();
+        circleNextY = circlePrevY-speed.getY();
     }
     private void topRight(double circlePrevX, double circlePrevY){
-        circleNextX = circlePrevX+Ball.SPEED_X;
-        circleNextY = circlePrevY-Ball.SPEED_Y;
+        Speed speed = getSpeed();
+        circleNextX = circlePrevX+speed.getX();
+        circleNextY = circlePrevY-speed.getY();
     }
     private void bottomLeft(double circlePrevX, double circlePrevY){
-        circleNextX = circlePrevX-Ball.SPEED_X;
-        circleNextY = circlePrevY+Ball.SPEED_Y;
+        Speed speed = getSpeed();
+        circleNextX = circlePrevX-speed.getX();
+        circleNextY = circlePrevY+speed.getY();
     }
     private void bottomRight(double circlePrevX, double circlePrevY){
-        circleNextX = circlePrevX+Ball.SPEED_X;
-        circleNextY = circlePrevY+Ball.SPEED_Y;
+        Speed speed = getSpeed();
+        circleNextX = circlePrevX+speed.getX();
+        circleNextY = circlePrevY+speed.getY();
     }
 
     private void initializeBall(){
