@@ -50,19 +50,51 @@ public class HelloController {
             rectRightPaddle.setTranslateY(previousPosRight + Paddle.SPEED);
         }
     }
+
+    double circleNextX = 0;
+    double circleNextY = 0;
+    private void topLeft(double circlePrevX,double circlePrevY){
+        circleNextX = circlePrevX-Ball.SPEED_X;
+        circleNextY = circlePrevY-Ball.SPEED_Y;
+    }
+    private void topRight(double circlePrevX, double circlePrevY){
+        circleNextX = circlePrevX+Ball.SPEED_X;
+        circleNextY = circlePrevY-Ball.SPEED_Y;
+    }
+    private void bottomLeft(double circlePrevX, double circlePrevY){
+        circleNextX = circlePrevX-Ball.SPEED_X;
+        circleNextY = circlePrevY+Ball.SPEED_Y;
+    }
+    private void bottomRight(double circlePrevX, double circlePrevY){
+        circleNextX = circlePrevX+Ball.SPEED_X;
+        circleNextY = circlePrevY+Ball.SPEED_Y;
+    }
+
     private void initializeBall(){
         Random rand = new Random();
-        int dir = rand.nextInt(4);
-        xPosition.setText(BallDirection.getByNumber(dir).toString());
-        //yPosition.setText(Double.toString(sceneY));
+        int dir = rand.nextInt(4 - 1 + 1) + 1;
+        BallDirection currentDirection = BallDirection.getByNumber(dir);
+        xPosition.setText(currentDirection.toString());
         Circle ball = (Circle) apView.lookup("#circleBall");
-        double circlePreviousX = ball.getCenterX();// 50
-        double circlePreviousY = ball.getCenterY();//100
+        double circlePreviousX = ball.getCenterX();
+        double circlePreviousY = ball.getCenterY();
 
+        switch (currentDirection){
+            case TOP_LEFT:
+                topLeft(circlePreviousX,circlePreviousY);
+                break;
+            case TOP_RIGHT:
+                topRight(circlePreviousX,circlePreviousY);
+                break;
+            case BOTTOM_LEFT:
+                bottomLeft(circlePreviousX,circlePreviousY);
+                break;
+            case BOTTOM_RIGHT:
+                bottomRight(circlePreviousX,circlePreviousY);
+                break;
+        }
 
-        double circleNextX = circlePreviousX-Ball.SPEED_X;
-
-        double circleNextY = circlePreviousY-Ball.SPEED_Y;
+        //yPosition.setText(Double.toString(sceneY));
 
         ball.setTranslateY(circleNextY);
         ball.setCenterY(circleNextY);
