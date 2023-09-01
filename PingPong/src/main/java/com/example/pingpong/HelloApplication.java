@@ -20,7 +20,7 @@ public class HelloApplication extends Application {
         double sceneHeight = 600;
         Scene scene = new Scene(loader, sceneWidth, sceneHeight);
         stage.setResizable(false);
-        Circle circle = new Circle(0,0,30);
+        Circle circle = new Circle(0,0,Ball.RADIUS);
         circle.setId("circleBall");
         circle.setFill(Ball.COLOR);
         circle.setLayoutX(scene.getWidth()/2);

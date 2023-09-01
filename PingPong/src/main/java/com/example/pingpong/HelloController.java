@@ -11,6 +11,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Pair;
 
 import java.util.Random;
 
@@ -22,6 +23,12 @@ public class HelloController {
     private Label xPosition;
     @FXML
     private Label yPosition;
+
+
+    private Circle getBall(){
+        Circle ball = (Circle) apView.lookup("#circleBall");
+        return ball;
+    }
 
     public void onActionStart(ActionEvent actionEvent) {
         Scene scene = apView.getScene();
@@ -60,21 +67,25 @@ public class HelloController {
         Speed speed = new Speed(x,y);
         return speed;
     }
+    
     private void topLeft(double circlePrevX,double circlePrevY){
         Speed speed = getSpeed();
         circleNextX = circlePrevX-speed.getX();
         circleNextY = circlePrevY-speed.getY();
     }
+
     private void topRight(double circlePrevX, double circlePrevY){
         Speed speed = getSpeed();
         circleNextX = circlePrevX+speed.getX();
         circleNextY = circlePrevY-speed.getY();
     }
+
     private void bottomLeft(double circlePrevX, double circlePrevY){
         Speed speed = getSpeed();
         circleNextX = circlePrevX-speed.getX();
         circleNextY = circlePrevY+speed.getY();
     }
+
     private void bottomRight(double circlePrevX, double circlePrevY){
         Speed speed = getSpeed();
         circleNextX = circlePrevX+speed.getX();
@@ -84,7 +95,7 @@ public class HelloController {
     private void initializeBall(){
         Random rand = new Random();
         int dir = rand.nextInt(4 - 1 + 1) + 1;
-        BallDirection currentDirection = BallDirection.getByNumber(dir);
+        BallDirection currentDirection = BallDirection.TOP_LEFT; //BallDirection.getByNumber(dir);
         xPosition.setText(currentDirection.toString());
         Circle ball = (Circle) apView.lookup("#circleBall");
         double circlePreviousX = ball.getCenterX();
@@ -105,16 +116,20 @@ public class HelloController {
                 break;
         }
 
-        //yPosition.setText(Double.toString(sceneY));
-
         ball.setTranslateY(circleNextY);
         ball.setCenterY(circleNextY);
         ball.setTranslateX(circleNextX);
         ball.setCenterX(circleNextX);
+        Pair<Double, Double> currentPos = getCurrentPosition();
+        xPosition.setText(String.valueOf(currentPos.getKey()));
+        yPosition.setText(String.valueOf(currentPos.getValue()));
+    }
+
+    private Pair<Double,Double> getCurrentPosition(){
+        Circle ball = getBall();
         Point2D pointInScene = ball.localToScene(ball.getCenterX(), ball.getCenterY());
         double sceneX = pointInScene.getX();
         double sceneY = pointInScene.getY();
-
+        return new Pair<>(sceneX,sceneY);
     }
-
 }
